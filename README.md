@@ -23,9 +23,9 @@ ember install ember-data-jsonapi-fields
 Usage
 ------------------------------------------------------------------------------
 
+```js
 import { JSONAPIFieldsAdapter } from 'ember-data-jsonapi-fields';
 
-```js
 export default class MyJSONAPIAdapter extends JSONAPIFieldsAdapter {
   ...
 }
