@@ -20,7 +20,7 @@ ember install ember-data-jsonapi-fields
 ```
 
 
-Usage
+You want to use this
 ------------------------------------------------------------------------------
 
 ```js
@@ -39,6 +39,33 @@ store.findRecord('post', 123, {
 store.findRecord('post', 123, {
   adapterOptions: { fields: { post: 'name,body', comments: 'title' } }, include: 'comments'
 });
+```
+
+You may not want to use this
+------------------------------------------------------------------------------
+
+You may not want to install this addon for a variety of reasons.  One might be your visceral reaction to installing yet another library.
+
+There is one case you might want to roll your own implementation.  If you don't care about caching mechanisms, simply override `buildQuery`.
+
+```js
+import JSONAPIAdapter from '@ember-data/adapter/json-api';
+
+export default ApplicationAdapter extends JSONAPIAdapter {
+  buildQuery(snapshot) {
+    let query = this._super(...arguments);
+
+    if (snapshot.adapterOptions) {
+      let { fields } = snapshot.adapterOptions;
+
+      if (fields) {
+        query.fields = fields;
+      }
+    }
+
+    return query;
+  },
+}
 ```
 
 Contributing
