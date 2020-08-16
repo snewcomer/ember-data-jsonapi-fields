@@ -1,8 +1,8 @@
-import RESTAdapter from '@ember-data/adapter/rest';
+import JSONAPIAdapter from '@ember-data/adapter/json-api';
 
 const FieldsForRecord = new WeakMap();
 
-export class JSONAPIFieldsAdapter extends RESTAdapter {
+export class JSONAPIFieldsAdapter extends JSONAPIAdapter {
   /**
     @method buildQuery
     @public
